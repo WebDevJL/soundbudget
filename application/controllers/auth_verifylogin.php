@@ -45,15 +45,16 @@ class Auth_VerifyLogin extends CI_Controller {
     
     if($result)
     {
-      $sess_array = array();
-      foreach($result as $row)
-      {
-        $sess_array = array(
-          'userID' => $row->userID,
-          'userName' => $row->userName
-        );
-        $this->session->set_userdata('logged_in', $sess_array);
-      }
+        // Comment by Jeremie (05-05-13): moved in User Model
+//      $sess_array = array();
+//      foreach($result as $row)
+//      {
+//        $sess_array = array(
+//          'userID' => $row->userID,
+//          'userName' => $row->userName
+//        );
+//        $this->session->set_userdata('logged_in', $sess_array);
+//      }
       return TRUE;
     }
     else

@@ -36,25 +36,26 @@ class Auth_AddUser extends CI_Controller {
     }
     else
     {
-        //query the database
+        //query the database & login user
         $result = $this->user->login($params['userName'], $params['password']);
         //Login user in session
-        $sess_array = array();
-        foreach($result as $row)
-        {
-          $sess_array = array(
-            'userID' => $row->userID,
-            'userName' => $row->userName
-          );
-          $this->session->set_userdata('logged_in', $sess_array);
-        }
+        // Comment by Jeremie (05-05-13): moved in User Model
+//        $sess_array = array();
+//        foreach($result as $row)
+//        {
+//          $sess_array = array(
+//            'userID' => $row->userID,
+//            'userName' => $row->userName
+//          );
+//          $this->session->set_userdata('logged_in', $sess_array);
+//        }
       //Go to private area
       /*Redirect to pages controller where:
        *    - first param: name of view to load
        *    - second: method used
        *    - redirect type: default=302
        */
-      redirect('home', 'view', '301');
+        redirect('home', 'view', '301');
     }
     
   }
