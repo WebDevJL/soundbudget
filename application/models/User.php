@@ -23,11 +23,9 @@ Class User extends CI_Model
         // Load encryption class
         //$this->load->library('encrypt');
     }
+    
     function login($username, $password)
     {
-        //$this->load->library('encrypt');// Load encryption class
-        //encrypt password value AES256 (default cypher used with mcrypt)
-        //$password_encrypted = $this->encrypt->encode($password);
         //build query to check user
         $this -> db -> select('userID, userName, password');
         $this -> db -> from('tblUsers');
