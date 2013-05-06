@@ -1,5 +1,29 @@
 <?php
 /**
+ * SoundBudget
+ *
+ *
+ * @package		SoundBudget
+ * @author		Jeremie Litzler
+ * @copyright           Copyright (c) 2013.
+ * @since		Version 1.0
+ * @filesource
+ */
+// ------------------------------------------------------------------------
+
+/**
+ * User Model
+ *
+ * Provides methods to manipulate the User data (retrieve, store) from
+ * difference source.
+ *
+ * @package		SoundBudget
+ * @subpackage          Models
+ * @category            Model
+ * @author		Jeremie Litzler
+ */
+
+/**
  * User Model
  * 
  * functions:
@@ -15,7 +39,10 @@
 Class User extends CI_Model
 {
 
-    //private $encrypt;
+    /**
+     * Constructor
+     * 
+     */
     function __construct()
     {
         // Call the Model constructor
@@ -23,7 +50,20 @@ Class User extends CI_Model
         // Load encryption class
         //$this->load->library('encrypt');
     }
-    
+    /**
+     * login
+     * 
+     * - look in the DB for the user details
+     * - if there is a result found, compare the password given against the
+     *   decrypted password from the db. If they match, then login the user by
+     *   storing his info in the session and return true.
+     * - in any other case, return false.
+     * 
+     * @access	public
+     * @param	string
+     * @param	string
+     * @return	bool
+     */
     function login($username, $password)
     {
         //build query to check user
@@ -64,6 +104,17 @@ Class User extends CI_Model
             return false;
         }
     }
+    /**
+     * addUser
+     * 
+     * - encrypt password
+     * - call stored procedure to add user in the DB
+     * - return result of DB insert.
+     * 
+     * @access	public
+     * @param	array
+     * @return	bool
+     */
     function addNewUser($params){
         //$this->load->library('encrypt');// Load encryption class
         //encrypt password with AES256
@@ -72,13 +123,41 @@ Class User extends CI_Model
         $result = $this->db->query($sql);
         return $result;
     }
+    /**
+     * deleteUser
+     * 
+     * - 
+     * 
+     * @access	public
+     * @param	array
+     * @return	bool
+     */
     function deleteUser($username, $password){
         
     }
+    /**
+     * getAllUsers
+     * 
+     * - 
+     * 
+     * @access	public
+     * @param	array
+     * @return	bool
+     */
     function getAllUsers(){
         
     }
-    //Find out if a username exists already
+    /**
+     * doesDATAFieldExist
+     * 
+     * - check if the username is already used by an existing user
+     * - check if the email is already used by an existing user
+     *  
+     * @access	public
+     * @param	string
+     * @param	string
+     * @return	bool
+     */
     function doesDATAFieldExist($value,$type){
         switch ($type){
             case "username"://check username
