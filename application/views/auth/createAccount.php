@@ -15,7 +15,7 @@
                <?php echo form_open('auth_addUser'); ?>
                <div>
                    <label for="userName">Choose your username:</label>
-                   <input type="text" size="20" id="username" name="userName"/>
+                   <input type="text" size="20" id="username" name="userName" value="<?php echo set_value('userName'); ?>"/>
                </div>
                <div>
                    <label for="password">Create your password:</label>
@@ -27,7 +27,7 @@
                </div>
                <div>
                    <label for="userEmail">Provide your email:</label>
-                   <input type="userEmail" size="20" id="userEmail" name="userEmail"/>
+                   <input type="userEmail" size="20" id="userEmail" name="userEmail" value="<?php echo set_value('userEmail'); ?>"/>
                </div>
                <input class="button" type="submit" value="Let's go!"/>
                </form>

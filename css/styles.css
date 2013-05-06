@@ -21,7 +21,7 @@ a#logout{
 }
 a#logout img{width: 20px;color: #FFF;}
 /* Generic custom CSS - End */
-/* Login view - Start of custom styles */
+/* Login and Create Account views - Start of custom styles */
 div#l-c{
     width: 320px;
     height:auto;
@@ -89,6 +89,7 @@ input.button{
     font-size: 14px;
     -webkit-border-radius: 4px;
 }
+.form_error{font-size: smaller;font-weight: bolder;color: #F80010;}
 /* Login view - End of custom styles*/
 /*Main view - Start of custom styles*/
 div#container { 
