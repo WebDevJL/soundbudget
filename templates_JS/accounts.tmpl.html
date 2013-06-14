@@ -1,0 +1,22 @@
+    <div id="mp1">
+        <ul>
+            <li class="mp_header">
+                <span class="mp_header_main" data-bind="text: middlePanelHeader"></span>
+                <span class="mp_header_sub" data-bind="text: currencyName"></span>
+                <span class="mp_header_sub" data-bind="text: accountName, visible: accountClicked"></span>
+            </li>
+            <li class="mp_toolbar">
+                <ul data-bind="foreach: toolbarElements">
+                    <li class="mp_toolbar_element">
+                        <span data-bind="text: filterText"></span>
+                    </li>
+                </ul>
+            </li>
+            <li class="mp_data_table">
+                
+            </li>
+            <li class="mp_morelink">
+                <span data-bind="text: moreText"></span>
+            </li>
+        </ul>
+    </div>

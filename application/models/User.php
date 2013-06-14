@@ -23,25 +23,14 @@
  * @author		Jeremie Litzler
  */
 
-/**
- * User Model
- * 
- * functions:
- *      - login(string $username, string $password)
- *          * check user to login
- *      - addNewUser(array $params)
- *          * create new user
- *      - deleteUser(string $username, string $password)
- *      - getAllUsers()
- *      - doesDATAFieldExist(string $value,string $type)
- * 
- */
 Class User extends CI_Model
 {
-
+    public $is_logged = FALSE;
+    public $user_session_data = array();
     /**
      * Constructor
      * 
+     * @access public
      */
     function __construct()
     {
@@ -87,8 +76,9 @@ Class User extends CI_Model
                 if($decrypted===$password){
                     //if passwords match, store user in session
                     $sess_array = array(
-                      'userID' => $row->userID,
-                      'userName' => $row->userName
+                        'user_logged' => TRUE,
+                        'userID' => $row->userID,
+                        'userName' => $row->userName
                     );
                     $this->session->set_userdata('logged_in', $sess_array);
 
@@ -188,6 +178,21 @@ Class User extends CI_Model
         {
             return false;//DATA is free to use!
         }
+    }
+    /**
+     * Load_session_data 
+     * 
+     * @access	public
+     * @param	void
+     * @return	array
+     */
+    function Load_session_data(){
+        if($this->session->userdata('logged_in'))
+        {
+            $this->user_session_data = $this->session->userdata('logged_in');
+            $this->is_logged = TRUE;
+        }
+        return $this->user_session_data;
     }
 }
 ?>

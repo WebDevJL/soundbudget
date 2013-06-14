@@ -10,10 +10,10 @@
  *      - Budgets
  *      - Preferences     
  */
-function Module(header, modules2) {
+function Module(header, scrArr) {
     var self = this;
     self.header = header;
-    self.modules = ko.observableArray(modules2);
+    self.modules = ko.observableArray(scrArr);
 }
 /***************************************************/
 //  Variable to build the bindings

@@ -1,0 +1,63 @@
+{
+    "menu_links": [
+        {
+            "name": "Schedules",
+            "active": 1,
+            "links": [
+                {
+                    "name": "Normal",
+                    "href": "schedules/normal"
+                },
+                {
+                    "name": "Budgets",
+                    "href": "schedules/budgets"
+                }
+            ]
+        },
+        {
+            "name": "Budgets",
+            "active": 1,
+            "links": [
+                {
+                    "name": "Recurring",
+                    "href": "budgets/recurring"
+                },
+                {
+                    "name": "One-time",
+                    "href": "budgets/one-time"
+                }
+            ]
+        },
+        {
+            "name": "Reports",
+            "active": 0,
+            "href": "reports"
+        },
+        {
+            "name": "Preferences",
+            "active": 0,
+            "links": [
+                {
+                    "name": "Accounts",
+                    "href": "preferences/accounts"
+                },
+                {
+                    "name": "Categories",
+                    "href": "preferences/categories"
+                },
+                {
+                    "name": "SubCategories",
+                    "href": "preferences/subcategories"
+                },
+                {
+                    "name": "Payees",
+                    "href": "preferences/payees"
+                },
+                {
+                    "name": "Currencies",
+                    "href": "preferences/currencies"
+                }
+            ]
+        }
+    ]
+}
