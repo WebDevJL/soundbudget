@@ -1,19 +1,20 @@
 var my = my || {}; //my namespace
-my.leftPanel=(function(my){
+my.app=(function(my){
     "use strict";
-    var overviewHeader = "Overview";
-    var currencies = {
-        "list": [{
+    var leftPanel = {
+        overviewHeader : "Overview",
+        currencies : {
+            "list": [{
                 "linkUrl": "/SoundBudget/mp/Transactions/lp_1",//POST DATA= currencyID
                 "currencyID": "1",
                 "currencyName": "Euro"
-        }, {
+            }, {
                 "linkUrl": "/SoundBudget/mp/Transactions/lp_1",//POST DATA= currencyID
                 "currencyID": "2",
                 "currencyName": "Dollar"
-        }]
-    };
-    var accounts = {
+            }]
+        },
+        accounts : {
         "list" : [
             {
                     "linkUrl": "/SoundBudget/mp/Transactions/lp_2",//POST DATA= accountID
@@ -35,8 +36,8 @@ my.leftPanel=(function(my){
                     "balance": "0"
             }
         ]
-    };
-    var schedules = {
+    },
+        schedules : {
         "header": "Schedules",
         "list": [{
                 "linkUrl": "/SoundBudget/mp/Schedules/lp_3.1",
@@ -45,8 +46,8 @@ my.leftPanel=(function(my){
                 "linkUrl": "/SoundBudget/mp/Schedules/lp_3.2",
                 "linkText": "Budgets"
         }]
-    };
-    var budgets = {
+    },
+        budgets : {
         "header": "Budgets",
         "list": [{
                 "linkUrl": "/SoundBudget/mp/Budgets/lp_4.1",
@@ -55,8 +56,8 @@ my.leftPanel=(function(my){
                 "linkUrl": "/SoundBudget/mp/Budgets/lp_4.2",
                 "linkText": "One-time"
         }]
-    };
-    var preferences = {
+    },
+        preferences : {
         "header": "Preferences",
         "list": [{
                 "linkUrl": "/SoundBudget/mp/Prefs/lp_6.1",
@@ -74,14 +75,26 @@ my.leftPanel=(function(my){
                 "linkUrl": "/SoundBudget/mp/Prefs/lp_6.5",
                 "linkText": "Payees"
             }]
+            }
+    },
+    middlePanel = {
+        mainHeader : "Select something in the menu",
+        subHeader1 : "",
+        subHeader2 : "",
+        toolsBar : {},
+        moreLink : {
+            moreText : "",
+            moreLinkUrl : ""
+        }
+    },
+    rightPanel = {
+
     };
     return {
-        overviewHeader : overviewHeader,
-        currencies: currencies,
-        accounts: accounts,
-        schedules: schedules,
-        budgets: budgets,
-        preferences: preferences
+        leftPanel: leftPanel,
+        middlePanel: middlePanel,
+        rightPanel: rightPanel
     };
 })(my);
+
 

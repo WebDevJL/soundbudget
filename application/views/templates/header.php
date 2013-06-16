@@ -6,8 +6,9 @@
     <!--<script data-main="scripts/init" src="scripts/require.js"></script>-->
     <script src="scripts/jquery-1.9.1.js"></script>
     <script src="scripts/ko.js"></script>
+    <script src="scripts/koExternalTemplateEngine_all.js"></script>
+    <script src="scripts/data.js"></script>
     <script src="scripts/utils.js"></script>
-    <script src="scripts/sampleData.js"></script>
     <script src="scripts/models/app_viewModel.js"></script>
     <!--<script src="scripts/models/LeftPanelModel.js"></script>-->
     <!--<script src="scripts/models/LeftPanelModules.js"></script>-->
