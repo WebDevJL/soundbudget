@@ -1,0 +1,128 @@
+ /* 
+    Document   : styles
+    Created on : Apr 9, 2013, 7:55:47 PM
+    Author     : jeremielitzler
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/* Generic custom CSS - Start */
+body{font-family: Book Antiqua, Arial, sans-serif;background-color: #fff;}
+header{}
+img#logo{margin-top: 2px;}
+a#logout{
+    padding: 0 0 4px 2px;float: right;
+    width:20px;height: 20px;
+    background-color: #ff735d;color: #FFF;
+    border-left: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    -webkit-border-bottom-left-radius: 4px;
+}
+a#logout img{width: 20px;color: #FFF;}
+/* Generic custom CSS - End */
+/*
+*   Media queries from here
+*   Check screen width to find what to modify
+*   Queries are ordered by width asc
+*/
+@media screen and (min-width: 960px) and (max-width: 1025px) {
+/* define styles for width between 960 and 1025 */
+    div#mp1{width: 500px}
+    div#mp2{left: 500px;}
+}
+@media screen and (min-width: 1025px) and (max-width: 1281px) {
+/* define styles for width between 1025 and 1280 */
+    div#mp1{width: 680px;}
+    div#mp2{left: 680px;}
+}
+@media screen and (min-width: 1281px) {
+/* define styles for width over 1280 */
+    div#mp1{width: 800px;}
+    div#mp2{left: 800px;}
+}
+/*Main view - Start of custom styles*/
+div#container { 
+    position:absolute;
+    top:50px;bottom:0;left:0;right: 0;
+}
+div#panels-container{
+    background-color: rgba(0, 0, 0, 0.05);
+    top:50px;bottom:0;left:0;right: 0;
+    position:absolute;
+    overflow: hidden;
+}
+div#lp { 
+    position: absolute;
+    overflow-y: scroll;
+    left: 0;top: 0;
+    width: 220px; height: 100%;
+    display: block;
+    background-color: #fff;
+    z-index: 10;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.3); 
+    border-radius: 2px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0 0 5px rgba(127,0,255,0.5); 
+}
+.box-scroll-vertical{overflow-y: auto;overflow-x: hidden;}
+div#mp { 
+    position: absolute;
+    overflow: hidden;
+    left: 220px;top: 0;
+    right: 0;bottom: 0;
+    display: block; 
+    background-color: #dce4ea;
+    /*z-index: 99;*/
+    text-indent: 20px;
+}
+div#mp1 { 
+    position: absolute;
+    overflow: hidden;
+    left: 0;top: 0;bottom: 0;
+    display: block; 
+    background-color: #dce4ea;
+    border-right: 1px solid #99acbd;
+    z-index: 5;
+}
+div#mp2 { 
+    position: absolute;
+    overflow: hidden;
+    top: 0;right: 0;bottom: 0;
+    display: block; 
+    background-color: #dce4ea;
+}
+.lp_header, .lp_sub li{
+    display: block;
+}
+.lp_header{
+    padding: 5px 0 5px 5px;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #ccc;
+}
+.lp_sub li, select.lp_sub{
+    margin: 1px 0 1px 10px;
+}
+.lp_sub li{padding:5px;}
+.account_table span{display: block;}
+.accountName{
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.accountBalance{text-align: right;}
+.lp_sub li:hover{
+    background-color: #DFF6FE;
+    border-left: 4px solid #18DEFF;
+}
+
+
+/*Clear class*/
+.clear{margin: 0; padding: 0;clear:both;visibility: hidden;}

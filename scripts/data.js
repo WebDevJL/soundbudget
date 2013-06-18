@@ -20,7 +20,7 @@ my.app=(function(my){
                     "linkUrl": "/SoundBudget/mp/Transactions/lp_2",//POST DATA= accountID
                     "currencyID": "1",
                     "accountID": "1",
-                    "accountName": "Account 1",
+                    "accountName": "Account 1 Veerrryyyy longgggggggggg",
                     "balance": "0"
                 }, {
                     "linkUrl": "/SoundBudget/mp/Transactions/lp_2",//POST DATA= accountID

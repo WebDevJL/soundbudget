@@ -42,6 +42,9 @@ $(function() {
             moreLink = my.app.middlePanel.moreLink,
             middlePanelView = function () {
                 return "default";
+            },
+            renderMiddlePanel = function(){
+        
             };
         return {
             overviewHeader: overviewHeader,

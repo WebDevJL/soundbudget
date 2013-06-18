@@ -12,7 +12,8 @@
     <script src="scripts/models/app_viewModel.js"></script>
     <!--<script src="scripts/models/LeftPanelModel.js"></script>-->
     <!--<script src="scripts/models/LeftPanelModules.js"></script>-->
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div id="main-container">
