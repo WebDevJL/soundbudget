@@ -63,6 +63,7 @@ Class Event_configuration extends CI_Model
             }
             $dbset->next_result();
             $dbset->free_result();
+            //$dbset->close();
             return $this->_event_source;
         }
     }

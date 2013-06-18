@@ -64,19 +64,12 @@ Class Left_data_handler extends CI_Model
      * @return	bool
      */
     public function Retrieve_data($action){
-        if($this->user->is_logged)
+        if($this->user->is_logged )
         {
-            switch ($action) {
-                case "init_1":
                     $query = sprintf($this->_event_details['source'],$this->user->user_session_data['userID']);
-                    error_log($sql);
                     $this->_data_to_return = $this->mdh->Retrieve_data($this->_event_details['sourceType'],$query);
-                    break;
-
-                default:
-                    $this->_data_to_return['error'] ='not data found';
-                    break;
-            }
+                    //$this->_data_to_return['error'] ='not data found';
+                    if(sizeof($this->_data_to_return) <= 0) $this->_data_to_return['error'] ='no data';
         }else{
             $this->_data_to_return['error'] ='access denied';
         }

@@ -53,6 +53,9 @@ Class Main_data_handler extends CI_Model
                 {
                     $this->_data_to_return = $dbset->result();
                 }
+                $dbset->next_result();
+                $dbset->free_result();
+                //$dbset->close();
                 break;
             case "json":
 
@@ -70,8 +73,6 @@ Class Main_data_handler extends CI_Model
             default:
                 break;
         }
-        $dbset->next_result();
-        $dbset->free_result();
         return $this->_data_to_return;
     }
     /**
