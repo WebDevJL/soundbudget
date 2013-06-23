@@ -1,4 +1,3 @@
-var my = my || {}; //my namespace
 my.app=(function(my){
     "use strict";
     var leftPanel = {
@@ -96,5 +95,4 @@ my.app=(function(my){
         rightPanel: rightPanel
     };
 })(my);
-
 

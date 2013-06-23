@@ -7,11 +7,13 @@
     <script src="scripts/jquery-1.9.1.js"></script>
     <script src="scripts/ko.js"></script>
     <script src="scripts/koExternalTemplateEngine_all.js"></script>
-    <script src="scripts/data.js"></script>
     <script src="scripts/utils.js"></script>
-    <script src="scripts/models/app_viewModel.js"></script>
-    <!--<script src="scripts/models/LeftPanelModel.js"></script>-->
-    <!--<script src="scripts/models/LeftPanelModules.js"></script>-->
+    <script src="scripts/my.js"></script>
+    <script src="scripts/ajaxservice.js"></script>
+    <script src="scripts/leftPanelDataService.js"></script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/models/appViewModel.js"></script>
+    <script src="scripts/appMaster.js"></script>
     <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>

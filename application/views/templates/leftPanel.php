@@ -2,13 +2,13 @@
     <!-- Overview -->
     <span class="lp_header" data-bind="text: overviewHeader"></span>
     <select class="lp_sub" data-bind="
-            options: currencies.list,
+            options: dynamicCurrencies,
             value: selectedCurrency,
             optionsText: 'currencyName'">
     </select>
     <ul class="lp_sub" data-bind="foreach: accounts">
-        <li class="account_table">
-            <span class="accountName" data-bind="attr: {title: accountName}, text: accountName"></span>
+        <li class="account_table" data-bind="attr: {title: accountName}">
+            <span class="accountName" data-bind="text: accountName"></span>
             <span class="accountBalance" data-bind="text: balance"></span>
         </li>
     </ul>
