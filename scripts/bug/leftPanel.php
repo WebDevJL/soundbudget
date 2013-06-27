@@ -2,14 +2,14 @@
     <!-- Overview -->
     <span class="lp_header" data-bind="text: overviewHeader"></span>
     <select class="lp_sub" data-bind="
-            options: dynamicCurrencies,
+            options: currencies.list,
             value: selectedCurrency,
             optionsText: 'currencyName'">
     </select>
-    <ul class="lp_sub" data-bind="foreach: filteredAccounts">
+    <ul class="lp_sub" data-bind="foreach: accounts">
         <li class="account_table" data-bind="attr: {title: accountName}">
             <span class="accountName" data-bind="text: accountName"></span>
-            <span class="accountBalance" data-bind="text: accountBalance"></span>
+            <span class="accountBalance" data-bind="text: balance"></span>
         </li>
     </ul>
    <!-- Other modules -->

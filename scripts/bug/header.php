@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Welcome to SoundBudget</title>
+	<meta charset="utf-8">
+	<title>Welcome to SoundBudget</title>
     <!--<script data-main="scripts/init" src="scripts/require.js"></script>-->
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/jquery-uijs"></script>
+    <script src="scripts/jquery-1.9.1.js"></script>
     <script src="scripts/ko.js"></script>
     <script src="scripts/koExternalTemplateEngine_all.js"></script>
-    <script src="scripts/ko.mapping.js"></script>
-    <script src="scripts/underscore.js"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/my.js"></script>
     <script src="scripts/ajaxservice.js"></script>
     <script src="scripts/leftPanelDataService.js"></script>
-    <!--<script src="scripts/data.js"></script>-->
+    <script src="scripts/data.js"></script>
     <script src="scripts/models/appViewModel.js"></script>
     <script src="scripts/appMaster.js"></script>
-    <link href="css/jquery-ui-css/ui-lightness/jquery-ui.css" 
-          rel="stylesheet" 
-          type="text/css">
     <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>

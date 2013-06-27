@@ -17,7 +17,7 @@ my.Account = function (item) {
     this.accountBalance = item.accountBalance;
     this.active = item.active;
 };
-my.data = (function (my) {
+my.app = (function (my) {
     "use strict";
     var leftPanel = {
         overviewHeader: "Overview",
@@ -99,13 +99,13 @@ infuser.defaults.templateUrl = "/SoundBudget/templates_JS";
     Array.prototype.objectInArray = my.objectInArray;*/
 
 var appVM = (function () {
-    "use strict";
+    /***********************************************************/
     var self = this;
     // LeftPanel
-    self.overviewHeader = my.data.leftPanel.overviewHeader;
-    self.schedules = my.data.leftPanel.schedules;
-    self.budgets = my.data.leftPanel.budgets;
-    self.preferences = my.data.leftPanel.preferences;
+    self.overviewHeader = my.app.leftPanel.overviewHeader;
+    self.schedules = my.app.leftPanel.schedules;
+    self.budgets = my.app.leftPanel.budgets;
+    self.preferences = my.app.leftPanel.preferences;
     self.loading = ko.observableArray();
     self.dynamicCurrencies = ko.observableArray();
     self.selectedCurrency = ko.observable("");
@@ -165,12 +165,12 @@ var appVM = (function () {
         });
     });
     // Middle Panel
-    self.mainHeader = my.data.middlePanel.mainHeader;
-    self.subHeader1 = my.data.middlePanel.subHeader1;
-    self.subHeader2 = my.data.middlePanel.subHeader2;
-    self.toolsBar = my.data.middlePanel.toolsBar;
+    self.mainHeader = my.app.middlePanel.mainHeader;
+    self.subHeader1 = my.app.middlePanel.subHeader1;
+    self.subHeader2 = my.app.middlePanel.subHeader2;
+    self.toolsBar = my.app.middlePanel.toolsBar;
     self.mpData = {};
-    self.moreLink = my.data.middlePanel.moreLink;;
+    self.moreLink = my.app.middlePanel.moreLink;;
     self.middlePanelView = function () {
         return "default";
     };

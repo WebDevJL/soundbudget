@@ -13,7 +13,6 @@ my.Account = function (item) {
 };
 console.log("step1");
 my.getCurrencies = function () {
-    console.log("getCurrencies...");
     $.getJSON('lp/Get_json/init_2',
         function(data) {
             $.each(data, function (i, p) {
@@ -23,13 +22,11 @@ my.getCurrencies = function () {
                 return  new my.Currency(c);
                 //return c;
             });*/
-            console.log(my.app.data.currencies);
         }
     );
 };
-console.log("step2.1");
+console.log("step2");
 my.getAccounts = function () {
-    console.log("getAccounts...");
     $.getJSON('lp/Get_json/init_1',
         function(data) {
             $.each(data, function (i, p) {
@@ -39,14 +36,9 @@ my.getAccounts = function () {
                 return  new my.Account(a);
                 //return a;
             });*/
-            console.log(my.app.data.accounts);
         }
     );
 };
-console.log("step2.2");
-//my.getCurrencies();
-//my.getAccounts();
-console.log("step2.3");
 
 my.app=(function(my){
     "use strict";
