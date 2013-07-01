@@ -1,0 +1,38 @@
+<ul>
+    <li class="mp_header">
+        <span class="mp_header_main" data-bind="text: $root.mainHeader"></span>
+        <span class="mp_header_sub" data-bind="text: $root.subHeader1"></span>
+        <span class="mp_header_sub" data-bind="text: $root.subHeader2"></span>
+    </li>
+    <li class="mp_toolbar">
+        <ul data-bind="foreach: $root.toolsBar">
+            <li class="mp_toolbar_element">
+                <span data-bind="text: filterText"></span>
+            </li>
+        </ul>
+    </li>
+    <li class="mp_data_table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Currency Name</th>
+                    <th>Account Name</th>
+                    <th>Active</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </li>
+    <!--<li class="mp_morelink">
+        <span data-bind="text: moreText"></span>
+    </li>-->
+</ul>

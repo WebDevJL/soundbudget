@@ -10,12 +10,13 @@ my.Currency = function (item) {
 };
 
 my.Account = function (item) {
-    this.currencyID = item.currencyID;
-    this.currencyName = item.currencyName;
-    this.accountID = item.accountID;
-    this.accountName = item.accountName;
-    this.accountBalance = item.accountBalance;
-    this.active = item.active;
+    this.currencyID = ko.observable(item.currencyID);
+    this.currencyName = ko.observable(item.currencyName);
+    this.accountID = ko.observable(item.accountID);
+    this.accountName = ko.observable(item.accountName);
+    this.accountBalance = ko.observable(item.accountBalance);
+    this.active = ko.observable(item.active);
+    this.accountURL = "/mp/Accounts/lp_2&accountID="+item.accountID; 
 };
 my.data = (function (my) {
     "use strict";
@@ -44,28 +45,44 @@ my.data = (function (my) {
         preferences: {
             "header": "Preferences",
             "list": [{
+                "template": "accounts",
                 "linkUrl": "/mp/Prefs/lp_6.1",
                 "linkText": "Accounts"
             }, {
+                "template": "currencies",
                 "linkUrl": "/mp/Prefs/lp_6.2",
                 "linkText": "Currencies"
             }, {
+                "template": "categories",
                 "linkUrl": "/mp/Prefs/lp_6.3",
                 "linkText": "Categories"
             }, {
+                "template": "subcategories",
                 "linkUrl": "/mp/Prefs/lp_6.4",
                 "linkText": "SubCategories"
             }, {
+                "template": "payees",
                 "linkUrl": "/mp/Prefs/lp_6.5",
                 "linkText": "Payees"
             }]
         }
     },
         middlePanel = {
-            mainHeader: "Select something in the menu",
-            subHeader1: "",
-            subHeader2: "",
-            toolsBar: {},
+            mainHeader: "Section Header ›",
+            subHeader1: "Sub Section 1 ›",
+            subHeader2: "Sub Section 2",
+            toolsBar: {list: [
+                    {
+                        "filterText": "Sort",
+                        "filterUrl": ""
+                    },{
+                        "filterText": "Add",
+                        "filterUrl": ""
+                    },{
+                        "filterText": "Search",
+                        "filterUrl": ""
+                    }
+            ]},
             moreLink: {
                 moreText: "",
                 moreLinkUrl: ""
@@ -160,7 +177,7 @@ var appVM = (function () {
         }
         var filter = self.selectedCurrency().currencyID;
         return ko.utils.arrayFilter(self.dynamicAccounts(), function (item) {
-            var itemkey = item.currencyID;
+            var itemkey = item.currencyID();
             return ko.utils.stringStartsWith(itemkey, filter);
         });
     });
@@ -170,9 +187,20 @@ var appVM = (function () {
     self.subHeader2 = my.data.middlePanel.subHeader2;
     self.toolsBar = my.data.middlePanel.toolsBar;
     self.mpData = {};
-    self.moreLink = my.data.middlePanel.moreLink;;
+    self.moreLink = my.data.middlePanel.moreLink;
+    self.selectPreferenceLink = ko.observable();
     self.middlePanelView = function () {
-        return "default";
+        //console.log(this);
+        if(this === undefined) 
+            return "default";
+        if(this.template !== undefined){
+            console.log(this.template);
+            return this.template;
+        }else{
+            return "default";
+        }
+        
+//        return "default";
     };
 });
 $(document).ready(function () {
