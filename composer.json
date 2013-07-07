@@ -1,0 +1,6 @@
+{
+    "require": {
+        "components/jquery": "*",
+        "components/jqueryui": "*"                
+    }
+}

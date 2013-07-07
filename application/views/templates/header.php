@@ -8,19 +8,20 @@
           type="text/css">
     <link href="css/reset.css" rel="stylesheet" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
-    <!--<script data-main="scripts/init" src="scripts/require.js"></script>-->
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/jquery-ui.js"></script>
-    <script src="scripts/ko.js"></script>
-    <script src="scripts/koExternalTemplateEngine_all.js"></script>
-    <script src="scripts/ko.mapping.js"></script>
-    <script src="scripts/underscore.js"></script>
-    <script src="scripts/utils.js"></script>
+    <!--<script data-main="scripts/main" src="scripts/require.js"></script>-->
+    <script src="scripts/packages/jquery.js"></script>
+    <script src="scripts/packages/jquery-ui.js"></script>
+    <script src="scripts/packages/ko.js"></script>
+    <script src="scripts/packages/koExternalTemplateEngine_all.js"></script>
+    <script src="scripts/packages/ko.mapping.js"></script>
+    <script src="scripts/packages/underscore.js"></script>
+    <script src="scripts/packages/utils.js"></script>
     <script src="scripts/my.js"></script>
-    <script src="scripts/ajaxservice.js"></script>
-    <script src="scripts/leftPanelDataService.js"></script>
-    <!--<script src="scripts/data.js"></script>-->
-    <script src="scripts/models/appViewModel.js"></script>
+    <script src="scripts/services/ajaxservice.js"></script>
+    <script src="scripts/services/leftPanelDataService.js"></script>
+    <script src="scripts/models/Currency.js"></script>
+    <script src="scripts/models/Account.js"></script>
+    <script src="scripts/viewmodels/appViewModel.js"></script>
     <script src="scripts/ui/main.js"></script>
 </head>
 <body>

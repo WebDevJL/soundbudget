@@ -1,8 +1,8 @@
 <ul>
     <li class="mp_header">
-        <span class="mp_header_main" data-bind="text: $root.mainHeader"></span>
-        <span class="mp_header_sub" data-bind="text: $root.subHeader1"></span>
-        <span class="mp_header_sub" data-bind="text: $root.subHeader2"></span>
+        <span class="mp_header_main" data-bind="text: mainHeader"></span>
+        <span class="mp_header_sub" data-bind="text: subHeader1"></span>
+        <span class="mp_header_sub" data-bind="text: subHeader2"></span>
     </li>
     <li class="mp_toolbar">
         <ul data-bind="foreach: $root.toolsBar">
@@ -13,7 +13,7 @@
     </li>
     <li class="mp_data_table">
         <table>
-            <thead>
+            <thead data-bind="with: $root">
                 <tr>
                     <th>Currency Name</th>
                     <th>Account Name</th>
@@ -21,12 +21,12 @@
                     <th>Balance</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-bind="foreach: dynamicAccounts">
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td data-bind="text: currencyName"></td>
+                    <td data-bind="text: accountName"></td>
+                    <td data-bind="text: active"></td>
+                    <td data-bind="text: accountBalance"></td>
                 </tr>
             </tbody>
         </table>
