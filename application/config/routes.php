@@ -44,8 +44,7 @@ $route['auth_logout'] = 'auth_logout/logout';
 $route['CreateAccount'] = 'CreateAccount';
 $route['auth_addUser'] = 'auth_addUser';
 
-$route['lp/(:any)'] = 'Left_panel_listener/$1';
-$route['mp/(:any)'] = 'Middle_panel/$1';
+$route['rq/(:any)'] = 'Request_handler/$1';
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = 'error_route';
 

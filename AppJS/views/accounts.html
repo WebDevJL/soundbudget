@@ -1,0 +1,58 @@
+﻿<section>
+    <span data-bind="html: mainHeader"></span>
+    <span data-bind="html: seperator"></span>
+    <span data-bind="html: subHeader1"></span>
+    <span data-bind="html: seperator"></span>
+    <span data-bind="html: subHeader2"></span>
+    <div class="accounts table">
+        <section data-bind="foreach: accounts">
+            <!-- ko if: rowType==='header' -->
+                <ul class="rowHeader">
+                    <li class="del"></li>
+                    <li class="c3" data-bind="html: active"></li>
+                    <li class="c1" data-bind="html: currencyName"></li>
+                    <li class="c2" data-bind="html: accountName"></li>
+                    <li class="c4" data-bind="html: accountBalance"></li>
+                </ul>
+            <!-- /ko -->
+            <!-- ko if: rowType==='insert' -->
+                <ul class="rowData">
+                    <li class="del" data-bind="click: $parent.addRow">
+                        <img src="Content/assets/add.png" width="20" alt="add">
+                    </li>
+                    <li class="c3">
+                        <input type="checkbox" data-bind="value: active">
+                    </li>
+                    <li class="c1">
+                        <input type="text" class="defaultText" data-bind="attr: {title: 'Please select a currency'}">
+                    </li>
+                    <li class="c2">
+                        <input type="text" class="defaultText" data-bind="attr: {title: 'Please type a name for your account'}">
+                    </li>
+                    <li class="c4"></li>
+                </ul>
+            <!-- /ko -->
+            <!-- ko if: rowType==='data' && disabled!=='1' -->
+                <ul class="rowData">
+                    <li class="del" data-bind="click: $parent.deleteRow">
+                        <img src="Content/assets/delete.png" width="20" alt="delete">
+                    </li>
+                    <li class="c3">
+                        <input type="checkbox" data-bind="value: active">
+                    </li>
+                    <li class="c1" data-bind="
+                        attr: {title: currencyName}
+                        ">
+                        <input type="text" data-bind="value: currencyName">
+                    </li>
+                    <li class="c2" data-bind="
+                        attr: {title: accountName}
+                        ">
+                        <input type="text" data-bind="value: accountName">
+                    </li>
+                    <li class="c4" data-bind="text: accountBalance"></li>
+                </ul>
+            <!-- /ko -->
+        </section>
+    </div>
+</section>

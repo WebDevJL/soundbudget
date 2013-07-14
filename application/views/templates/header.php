@@ -3,36 +3,33 @@
 <head>
     <meta charset="utf-8">
     <title>Welcome to SoundBudget</title>
-    <link href="css/jquery-ui-css/ui-lightness/jquery-ui.css" 
-          rel="stylesheet" 
-          type="text/css">
-    <link href="css/reset.css" rel="stylesheet" type="text/css">
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-    <!--<script data-main="scripts/main" src="scripts/require.js"></script>-->
-    <script src="scripts/packages/jquery.js"></script>
-    <script src="scripts/packages/jquery-ui.js"></script>
-    <script src="scripts/packages/ko.js"></script>
-    <script src="scripts/packages/koExternalTemplateEngine_all.js"></script>
-    <script src="scripts/packages/ko.mapping.js"></script>
-    <script src="scripts/packages/underscore.js"></script>
-    <script src="scripts/packages/utils.js"></script>
-    <script src="scripts/my.js"></script>
-    <script src="scripts/services/ajaxservice.js"></script>
-    <script src="scripts/services/leftPanelDataService.js"></script>
-    <script src="scripts/models/Currency.js"></script>
-    <script src="scripts/models/Account.js"></script>
-    <script src="scripts/viewmodels/appViewModel.js"></script>
-    <script src="scripts/ui/main.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="apple-touch-startup-image" href="Content/images/ios-startup-image-landscape.png" media="(orientation:landscape)" />
+    <link rel="apple-touch-startup-image" href="Content/images/ios-startup-image-portrait.png" media="(orientation:portrait)" />
+    <link rel="apple-touch-icon" href="Content/images/icon.png"/>
+
+    <link rel="stylesheet" href="Content/bootstrap.css" />
+    <link rel="stylesheet" href="Content/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="Content/font-awesome.css" />
+    <link rel="stylesheet" href="Content/ie10mobile.css" />
+    <link rel="stylesheet" href="Content/durandal.css" />
+    <link rel="stylesheet" href="Content/toastr.css" />
+    <link rel="stylesheet" href="Content/app.css" />
+    <link rel="stylesheet" href="Content/reset.css" type="text/css">
+    <link rel="stylesheet" href="Content/main.css" type="text/css">
+
+    <script type="text/javascript">
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            var mq = "@@-ms-viewport{width:auto!important}";
+            msViewportStyle.appendChild(document.createTextNode(mq));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    </script>
 </head>
 <body>
-    <div id="main-container">
-        <a id="logout" href="auth_logout">
-            <img src="assets/logout-icon.png" id="logo" alt="Logout">
-        </a>
-        <header>
-            <!--App logo here-->
-            <a href="home">
-                <img src="assets/app-logo.png" id="logo" alt="Application logo">
-            </a>
-        </header>
-        <div id="panels-container">
