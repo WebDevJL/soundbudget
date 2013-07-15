@@ -73,6 +73,12 @@ Class Request_data_handler extends CI_Model
                             $this->user->user_session_data['userID']
                             );
                     break;
+                case 'init_2':
+                    $query = sprintf(
+                            $this->_event_details['source'],
+                            $this->user->user_session_data['userID']
+                            );
+                    break;
                 case 'mp_4-2':
                     $query = sprintf(
                             $this->_event_details['source'],

@@ -21,18 +21,18 @@ a#logout img{width: 20px;color: #FFF;}
     padding: 5px;
     border-bottom: 1px solid #ddd;
 }
-.del img:hover{
+.icon img:hover{
     background-color: #dfeffc;
 }
 /* account table specific styling */
-.accounts input {
+.accounts input, .accounts select {
   width: 95%;
   padding: 1%;
 }
 .accounts .c1{width: 40%}
 .accounts .c2{width: 40%}
 .accounts .c3{width: 5%}
-.accounts .del{width: 3%}
+.accounts .icon{width: 3%}
 .accounts .c4{width: 12%}
     
 /*Clear class*/

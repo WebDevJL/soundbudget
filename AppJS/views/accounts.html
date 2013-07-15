@@ -8,7 +8,7 @@
         <section data-bind="foreach: accounts">
             <!-- ko if: rowType==='header' -->
                 <ul class="rowHeader">
-                    <li class="del"></li>
+                    <li class="icon"></li>
                     <li class="c3" data-bind="html: active"></li>
                     <li class="c1" data-bind="html: currencyName"></li>
                     <li class="c2" data-bind="html: accountName"></li>
@@ -17,14 +17,17 @@
             <!-- /ko -->
             <!-- ko if: rowType==='insert' -->
                 <ul class="rowData">
-                    <li class="del" data-bind="click: $parent.addRow">
+                    <li class="icon" data-bind="click: $parent.addRow">
                         <img src="Content/assets/add.png" width="20" alt="add">
                     </li>
                     <li class="c3">
                         <input type="checkbox" data-bind="value: active">
                     </li>
                     <li class="c1">
-                        <input type="text" class="defaultText" data-bind="attr: {title: 'Please select a currency'}">
+                        <select data-bind="
+                                options: $root.currencies,
+                                optionsText: 'currencyName'">
+                        </select>
                     </li>
                     <li class="c2">
                         <input type="text" class="defaultText" data-bind="attr: {title: 'Please type a name for your account'}">
@@ -34,7 +37,7 @@
             <!-- /ko -->
             <!-- ko if: rowType==='data' && disabled!=='1' -->
                 <ul class="rowData">
-                    <li class="del" data-bind="click: $parent.deleteRow">
+                    <li class="icon" data-bind="click: $parent.deleteRow">
                         <img src="Content/assets/delete.png" width="20" alt="delete">
                     </li>
                     <li class="c3">

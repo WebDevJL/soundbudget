@@ -1,7 +1,7 @@
 ﻿define([
-    'durandal/http', 
+    'services/dataservice', 
     'services/logger'], 
-function (http, logger) {
+function (datacx, logger) {
     var mainHeader = 'Preferences',
         subHeader1 = 'Accounts',
         subHeader2 = '',
@@ -23,6 +23,8 @@ function (http, logger) {
                 'accountBalance': ''
         },
         accounts = ko.observableArray([]),
+        currencies = ko.observableArray([]),
+        selectedCurrency = ko.observable(),
         activate = function () {
             //the router's activator calls this function and waits for it to complete before proceding
             if (accounts().length > 0) {
@@ -30,11 +32,13 @@ function (http, logger) {
             }
 
             var that = this;
-            return http.get('rq/Get_json/init_1', {}).then(function(response) {
+            datacx.getJson('init_2').then(function(response) {
+                that.currencies(response.items);
+            });
+            return datacx.getJson('init_1').then(function(response) {
                 that.accounts(response.items);
                 that.accounts.unshift(that.defaultRow);
                 that.accounts.unshift(that.tableHeaders);
-                console.log(that.defaultRow);
             });
         },/*,
         select: function(item) {
@@ -72,6 +76,8 @@ function (http, logger) {
         tableHeaders: tableHeaders,
         defaultRow: defaultRow,
         accounts: accounts,
+        currencies: currencies,
+        selectedCurrency: selectedCurrency,
         activate: activate,
         addRow: addRow,
         editRow: editRow,
