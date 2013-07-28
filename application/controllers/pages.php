@@ -33,10 +33,6 @@ class Pages extends CI_Controller {
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/app', $data);
-            //$this->load->view('pages/'.$page, $data);
-            //$this->load->view('templates/leftPanel', $data);
-            //$this->load->view('templates/middlePanel', $data);
-            //$this->load->view('templates/rightPanel', $data);
             $this->load->view('templates/footer', $data);
         }   
         else

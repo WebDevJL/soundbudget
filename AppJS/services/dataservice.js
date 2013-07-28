@@ -4,16 +4,24 @@ define([
     function (http) {
         var dataservice = {
             getJson: getJson,
-            post: post
+            remove: remove,
+            add: add,
+            update: update
         };
 
         return dataservice;
 
         function getJson(action) {
-            return http.get('rq/Get_json/'+action, {});
+            return http.get('rq/Process_request2/'+action, {});
         }
-        function post(action,data) {
-            return http.post('rq/Get_json/'+action, data);
+        function remove(action,data) {
+            return http.get('rq/Process_request2/'+action, data);
+        }
+        function add(action,data) {
+            return http.get('rq/Process_request2/'+action, data);
+        }
+        function update(action,data) {
+            return http.get('rq/Process_request2/'+action, data);
         }
     }
 );

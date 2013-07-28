@@ -1,30 +1,28 @@
-﻿define([
+define([
     'services/dataservice', 
-    'services/logger'], 
-function (datacx, logger) {
+    'services/logger',
+    'services/errorHandler',
+    'models/AccountModel'
+], 
+function (datacx, logger, checker, account) {
     var mainHeader = 'Preferences',
         subHeader1 = 'Accounts',
         subHeader2 = '',
         seperator = '›',
         tableHeaders = {
                 'rowType': 'header',
-                'currencyID': '',
                 'currencyName': 'Currency',
-                'accountID': '',
                 'accountName': 'Account',
                 'active': 'Active',
-                'accountBalance': 'Balance'
+                'startingBalance': 'Starting Balance',
+                'accountBalance': 'Current'
         },
-        defaultRow = {
-                'rowType': 'insert',
-                'currencyName': '',
-                'accountName': '',
-                'active': '0',
-                'accountBalance': ''
-        },
+        insertForm = account.InitAccount(),
         accounts = ko.observableArray([]),
         currencies = ko.observableArray([]),
         selectedCurrency = ko.observable(),
+        newAccountActiveFlag = ko.observable(true),
+        accountBeforeUpdate = {},
         activate = function () {
             //the router's activator calls this function and waits for it to complete before proceding
             if (accounts().length > 0) {
@@ -32,13 +30,11 @@ function (datacx, logger) {
             }
 
             var that = this;
-            datacx.getJson('init_2').then(function(response) {
+            datacx.getJson('s_2').then(function(response) {
                 that.currencies(response.items);
             });
-            return datacx.getJson('init_1').then(function(response) {
-                that.accounts(response.items);
-                that.accounts.unshift(that.defaultRow);
-                that.accounts.unshift(that.tableHeaders);
+            return datacx.getJson('s_1').then(function(response) {
+                that.accounts(account.SetObservables(response.items));
             });
         },/*,
         select: function(item) {
@@ -48,25 +44,51 @@ function (datacx, logger) {
             app.showModal(item);
         }*/
         addRow = function() {
-            return this.rowType === 'header' ? 'rowHeader' : 'rowData';
+            var accountToAdd = account.InitToAdd(
+                    {
+                        account: this,
+                        currency: selectedCurrency(),
+                        activeFlag: newAccountActiveFlag()
+                    }
+                );
+            if(checker.isValid(accountToAdd,accounts,'account')){
+                var dataToServer = account.SetAccountForInsert(accountToAdd);
+                datacx.add('i_1', dataToServer).then(function(response) {
+                    accountToAdd.accountId = response.items[0].accountId;
+                    accounts.push(accountToAdd);
+                    logger.success("The account has been added",null,null,true);
+                });
+            }
         },
         editRow = function() {
-            console.log("rowType="+this.rowType);
-            return this.rowType === 'header' ? true : false;
+            var that = this, afterUpdate = {};
+            if (that.editable()) afterUpdate = account.SetToCompare(that);
+            if (!that.editable()) accountBeforeUpdate = account.SetToCompare(that);
+            this.editable(!that.editable());
+            
+            if(!this.editable() && account.NeedToUpdate(afterUpdate, accountBeforeUpdate)) {
+                console.log("need to update");
+                var data = account.SetAccountForUpdate(that);
+                datacx.remove('u_1', data).then(function(response) {
+                    if(response.result === true) {
+                        logger.success("Account '" + that.accountName + "' has been updated.",null,null,true);
+                    }
+                });
+                if (that.editable) accountBeforeUpdate = {};
+            } else { console.log("no need to update"); }
         },
         deleteRow = function() {
             var that = this;
-            console.log(that);
-            http.get('rq/Process_request/mp_4-2', that).then(function(response) {
-                logger.log(
-                        "Account '" + that.accountName + "' has been deleted.",
-                        null,
-                        null,
-                        true
-                );
-                accounts.remove(that);
+            var data = account.SetAccountForDelete(that);
+            datacx.remove('d_1', data).then(function(response) {
+                if(response.result === true) {
+                    logger.success("Account '" + that.accountName + "' has been deleted.",null,null,true);
+                    accounts.remove(that);
+                }
             }); 
         };
+    
+    newAccountActiveFlag.subscribe(function(){});
     
     var vm = {
         mainHeader: mainHeader,
@@ -74,10 +96,12 @@ function (datacx, logger) {
         subHeader2: subHeader2,
         seperator: seperator,
         tableHeaders: tableHeaders,
-        defaultRow: defaultRow,
+        insertForm: insertForm,
         accounts: accounts,
         currencies: currencies,
         selectedCurrency: selectedCurrency,
+        newAccountActiveFlag: newAccountActiveFlag,
+        accountBeforeUpdate: accountBeforeUpdate,
         activate: activate,
         addRow: addRow,
         editRow: editRow,

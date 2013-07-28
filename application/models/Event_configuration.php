@@ -49,7 +49,7 @@ Class Event_configuration extends CI_Model
      * @param	string
      * @return	array
      */
-    public function Get_source_for_action($action){
+    public function Get_query_details_for_action($action){
         $sql = "CALL USP_RetrieveEventDetails('$action');";
         error_log($sql);
         $dbset = $this->db->query($sql);
@@ -59,7 +59,7 @@ Class Event_configuration extends CI_Model
                 $this->_event_source['eventID'] = $row->eventID;
                 $this->_event_source['sourceType'] = $row->sourceType;
                 $this->_event_source['source'] = $row->source;
-                $this->_event_source['params'] = $row->params;
+                $this->_event_source['paramID'] = $row->paramID;
             }
             $dbset->next_result();
             $dbset->free_result();

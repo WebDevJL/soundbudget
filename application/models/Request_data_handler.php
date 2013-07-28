@@ -52,7 +52,7 @@ Class Request_data_handler extends CI_Model
      */
     public function Init($action){
         $this->_action = $action;
-        $this->_event_details = $this->event_config->Get_source_for_action($this->_action);
+        $this->_event_details = $this->event_config->Get_query_details_for_action($this->_action);
     }
     /**
      * MethodTemplate
@@ -79,6 +79,15 @@ Class Request_data_handler extends CI_Model
                             $this->user->user_session_data['userID']
                             );
                     break;
+                case 'mp_1-6':
+                    $query = sprintf(
+                            $this->_event_details['source'],
+                            $data['currencyID'],
+                            $this->user->user_session_data['userID'],
+                            $data['accountName'],
+                            $data['active']
+                            );
+                    break;
                 case 'mp_4-2':
                     $query = sprintf(
                             $this->_event_details['source'],
@@ -90,11 +99,10 @@ Class Request_data_handler extends CI_Model
                     break;
             }
             error_log($action);
-            $this->_data_to_return['items'] = $this->mdh->Retrieve_data($this->_event_details['sourceType'],$query);
-            //$this->_data_to_return['error'] ='not data found';
-            if(sizeof($this->_data_to_return) <= 0) $this->_data_to_return['error'] ='no data';
+            $this->_data_to_return = $this->mdh->Retrieve_data($this->_event_details['sourceType'],$query);
+            if(sizeof($this->_data_to_return['items']) <= 0) $this->_data_to_return['message'] ='no data';
         }else{
-            $this->_data_to_return['error'] ='access denied';
+            $this->_data_to_return['message'] ='Access denied';
         }
         return $this->_data_to_return;
     }

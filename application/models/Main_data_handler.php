@@ -49,9 +49,14 @@ Class Main_data_handler extends CI_Model
         switch ($source) {
             case "database":
                 $dbset = $this->db->query($query);
+                if ($this->db->affected_rows() > 0){
+                    $this->_data_to_return["result"] = TRUE;
+                }else{
+                    $this->_data_to_return["result"] = FALSE;
+                }
                 if($dbset -> num_rows() > 0)
                 {
-                    $this->_data_to_return = $dbset->result();
+                    $this->_data_to_return["items"] = $dbset->result();
                 }
                 $dbset->next_result();
                 $dbset->free_result();

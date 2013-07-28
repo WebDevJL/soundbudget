@@ -34,7 +34,16 @@ class CI_DB_mysqli_result extends CI_DB_result {
 	 */
 	function num_rows()
 	{
-		return @mysqli_num_rows($this->result_id);
+            // By  Jeremie on 22-07-13
+            // Update so that it returns 1 or 0 when executing a stored procedure
+            // Otherwise, it doesn't work as @mysqli_num_rows doesn't like booleans...
+            if ($this->result_id === TRUE) {
+                return 1;
+            } elseif ($this->result_id === FALSE) {
+                return 0;
+            } else {
+                return @mysqli_num_rows($this->result_id);
+            }
 	}
 
 	// --------------------------------------------------------------------

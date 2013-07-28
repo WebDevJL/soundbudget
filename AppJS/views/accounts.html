@@ -5,57 +5,71 @@
     <span data-bind="html: seperator"></span>
     <span data-bind="html: subHeader2"></span>
     <div class="accounts table">
-        <section data-bind="foreach: accounts">
-            <!-- ko if: rowType==='header' -->
-                <ul class="rowHeader">
+        <section data-bind="with: tableHeaders">
+            <ul class="rowHeader">
                     <li class="icon"></li>
                     <li class="c3" data-bind="html: active"></li>
                     <li class="c1" data-bind="html: currencyName"></li>
                     <li class="c2" data-bind="html: accountName"></li>
+                    <li class="c4" data-bind="html: startingBalance"></li>
                     <li class="c4" data-bind="html: accountBalance"></li>
-                </ul>
-            <!-- /ko -->
-            <!-- ko if: rowType==='insert' -->
+            </ul>
+        </section>
+        <section data-bind="with: insertForm">
+            <ul class="rowData">
+                <li class="icon" data-bind="click: $parent.addRow">
+                    <img src="Content/assets/add.png" width="20" alt="add">
+                </li>
+                <li class="c3">
+                    <input type="checkbox" data-bind="checked: $root.newAccountActiveFlag">
+                </li>
+                <li class="c1">
+                    <select data-bind="
+                            options: $root.currencies,
+                            value: $root.selectedCurrency,
+                            optionsText: 'currencyName',
+                            optionsCaption: 'Select a currency...'">
+                    </select>
+                </li>
+                <li class="c2">
+                    <input type="text" class="defaultText" data-bind="
+                           attr: {title: 'Please enter a name for your account'}, 
+                           value: accountName">
+                </li>
+                <li class="c4">
+                    <input type="text" class="defaultText" data-bind="
+                           attr: {title: 'Please enter a starting balance if you need'},
+                           value: startingBalance">
+                </li>
+                <li class="c5"></li>
+            </ul>
+        </section>
+        <section data-bind="foreach: accounts">
                 <ul class="rowData">
-                    <li class="icon" data-bind="click: $parent.addRow">
-                        <img src="Content/assets/add.png" width="20" alt="add">
-                    </li>
-                    <li class="c3">
-                        <input type="checkbox" data-bind="value: active">
-                    </li>
-                    <li class="c1">
-                        <select data-bind="
-                                options: $root.currencies,
-                                optionsText: 'currencyName'">
-                        </select>
-                    </li>
-                    <li class="c2">
-                        <input type="text" class="defaultText" data-bind="attr: {title: 'Please type a name for your account'}">
-                    </li>
-                    <li class="c4"></li>
-                </ul>
-            <!-- /ko -->
-            <!-- ko if: rowType==='data' && disabled!=='1' -->
-                <ul class="rowData">
-                    <li class="icon" data-bind="click: $parent.deleteRow">
+                    <li class="icon" data-bind="visible: !editable(),click: $parent.deleteRow">
                         <img src="Content/assets/delete.png" width="20" alt="delete">
                     </li>
+                    <li class="icon" data-bind="visible: editable(), click: $parent.editRow">
+                        <img src="Content/assets/update.png" width="20" alt="update">
+                    </li>
                     <li class="c3">
-                        <input type="checkbox" data-bind="value: active">
+                        <input type="checkbox" data-bind="checked: active, enable: editable()">
                     </li>
-                    <li class="c1" data-bind="
-                        attr: {title: currencyName}
-                        ">
-                        <input type="text" data-bind="value: currencyName">
+                    <li class="c1" data-bind="text: currencyName, attr: {title: currencyName}"></li>
+                    <li class="c2" data-bind="attr: {title: accountName}">
+                        <span data-bind="text: accountName, visible: !editable(), click: $root.editRow"></span>
+                        <input type="text" data-bind="visible: editable(), value: accountName">
                     </li>
-                    <li class="c2" data-bind="
-                        attr: {title: accountName}
-                        ">
-                        <input type="text" data-bind="value: accountName">
+                    <li class="c4">
+                        <span data-bind="html: currencySymbol"></span>
+                        <span data-bind="text: startingBalance, visible: !editable(), click: $root.editRow"></span>
+                        <input type="text" data-bind="visible: editable(), value: startingBalance">
                     </li>
-                    <li class="c4" data-bind="text: accountBalance"></li>
+                    <li class="c5">
+                        <span data-bind="html: currencySymbol"></span>
+                        <span data-bind="text: accountBalance"></span>
+                    </li>
                 </ul>
-            <!-- /ko -->
         </section>
     </div>
 </section>

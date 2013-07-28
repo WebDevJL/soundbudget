@@ -11,7 +11,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
         system.debug(true);
         //>>excludeEnd("build");
 
-        app.title = 'Durandal Starter Kit';
+        app.title = 'SoundBudget';
         app.start().then(function() {
             //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
             //Look for partial views in a 'views' folder in the root.
@@ -21,7 +21,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
             router.useConvention();
             router.mapNav('accounts');
             //router.mapNav('welcome');
-            router.mapNav('flickr');
+            //router.mapNav('flickr');
 
             app.adaptToDevice();
 

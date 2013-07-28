@@ -1,17 +1,22 @@
 define(['durandal/system'],
     function (system) {
         var logger = {
-            log: log,
-            logError: logError
+            info: info,
+            error: error,
+            success: success
         };
 
         return logger;
 
-        function log(message, data, source, showToast) {
+        function info(message, data, source, showToast) {
             logIt(message, data, source, showToast, 'info');
         }
+        
+        function success(message, data, source, showToast) {
+            logIt(message, data, source, showToast, 'success');
+        }
 
-        function logError(message, data, source, showToast) {
+        function error(message, data, source, showToast) {
             logIt(message, data, source, showToast, 'error');
         }
 
@@ -25,6 +30,8 @@ define(['durandal/system'],
             if (showToast) {
                 if (toastType === 'error') {
                     toastr.error(message);
+                } else if (toastType === 'success') {
+                    toastr.success(message);
                 } else {
                     toastr.info(message);
                 }
