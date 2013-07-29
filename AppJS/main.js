@@ -20,6 +20,7 @@ define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'durandal/plu
             //configure routing
             router.useConvention();
             router.mapNav('accounts');
+            router.mapNav('currencies');
             //router.mapNav('welcome');
             //router.mapNav('flickr');
 

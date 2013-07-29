@@ -64,6 +64,21 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
+$db['frbit']['hostname'] = 'soundbudget-app1.mysql.eu1.frbit.com';
+$db['frbit']['username'] = 'soundbudget-app1';
+$db['frbit']['password'] = 'GwmkUJpdFba9Cbku';
+$db['frbit']['database'] = 'soundbudget-app1';
+$db['frbit']['dbdriver'] = 'mysqli';
+$db['frbit']['dbprefix'] = '';
+$db['frbit']['pconnect'] = FALSE;
+$db['frbit']['db_debug'] = TRUE;
+$db['frbit']['cache_on'] = FALSE;
+$db['frbit']['cachedir'] = '';
+$db['frbit']['char_set'] = 'utf8';
+$db['frbit']['dbcollat'] = 'utf8_general_ci';
+$db['frbit']['swap_pre'] = '';
+$db['frbit']['autoinit'] = TRUE;
+$db['frbit']['stricton'] = FALSE;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

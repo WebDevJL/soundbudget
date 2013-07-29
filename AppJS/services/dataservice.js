@@ -14,13 +14,7 @@ define([
         function getJson(action) {
             return http.get('rq/Process_request2/'+action, {});
         }
-        function remove(action,data) {
-            return http.get('rq/Process_request2/'+action, data);
-        }
-        function add(action,data) {
-            return http.get('rq/Process_request2/'+action, data);
-        }
-        function update(action,data) {
+        function submit(action,data) {
             return http.get('rq/Process_request2/'+action, data);
         }
     }
