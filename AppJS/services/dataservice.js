@@ -4,9 +4,7 @@ define([
     function (http) {
         var dataservice = {
             getJson: getJson,
-            remove: remove,
-            add: add,
-            update: update
+            submit: submit
         };
 
         return dataservice;
