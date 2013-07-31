@@ -170,6 +170,16 @@ Class Handler extends CI_Model
                         $this->_request['request_data']['bool1']
                         );
                 break;
+            case '5'://params: any string, any float, any boolean, any integer, userID
+                $stored_prepared = sprintf(
+                        $stored_prepared,
+                        $this->_request['request_data']['string1'],
+                        $this->_request['request_data']['float1'],
+                        $this->_request['request_data']['bool1'],
+                        $this->_request['request_data']['id1'],
+                        $this->user->user_session_data['userID']
+                        );
+                break;
             default:
                 break;
         }

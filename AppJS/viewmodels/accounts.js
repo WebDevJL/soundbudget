@@ -54,7 +54,8 @@ function (datacx, logger, checker, account) {
             if(checker.isValid(accountToAdd,accounts,'account')){
                 var dataToServer = account.SetAccountForInsert(accountToAdd);
                 datacx.submit('i_1', dataToServer).then(function(response) {
-                    accountToAdd.accountId = response.items[0].accountId;
+                    //accountToAdd.accountId = response.items[0].accountId;
+                    accountToAdd.accountId = response.items;
                     accounts.push(accountToAdd);
                     logger.success("The account has been added",null,null,true);
                 });
@@ -66,11 +67,15 @@ function (datacx, logger, checker, account) {
             if (!that.editable()) accountBeforeUpdate = account.SetToCompare(that);
             this.editable(!that.editable());
             
-            if(!this.editable() && account.NeedToUpdate(afterUpdate, accountBeforeUpdate)) {
+            if(
+                    !this.editable() 
+                    && account.NeedToUpdate(afterUpdate, accountBeforeUpdate)
+                    && checker.isValid(that,accounts,'account')
+            ) {
                 var data = account.SetAccountForUpdate(that);
                 datacx.submit('u_1', data).then(function(response) {
                     if(response.result === true) {
-                        logger.success("Account '" + that.accountName + "' has been updated.",null,null,true);
+                        logger.success("Account '" + data.string1 + "' has been updated.",null,null,true);
                     }
                 });
                 if (that.editable) accountBeforeUpdate = {};

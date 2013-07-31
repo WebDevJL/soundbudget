@@ -6,7 +6,8 @@ define([], function (http) {
         isDecimal: isDecimal,
         isCurrency: isCurrency,
         isEmail: isEmail,
-        isValidCC: isValidCC
+        isValidCC: isValidCC,
+        removeIllegalChars: removeIllegalChars
     };
 
     return utils;
@@ -76,5 +77,12 @@ define([], function (http) {
             }
         }
         return false;
+    }
+    function removeIllegalChars(input) {
+        input = input.replace('\\','');
+        input = input.replace('/','');
+        input = input.replace('@','');
+        input = input.replace('#','');
+        return input;
     }
 });

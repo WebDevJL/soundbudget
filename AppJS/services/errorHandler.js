@@ -32,6 +32,13 @@ define([
             } else if (!utils.isDecimal(account.startingBalance)){
                 logger.error("Please enter a correct starting number (example: 1000.06 or 1000,06!",null,null,true);
                 check = false;
+            } else if (containsIllegalChar(account.accountName)){
+                logger.error("Hum... what are you trying to do? "+
+                        account.accountName+
+                        " contains illegal characters (/, \\, # and @)."
+                        +
+                        ". Please clean it up. Thanks.",null,null,true);
+                check = false;
             } else if (!isUnique(account, accounts, filters)){
                 logger.error("You already have an account named '"+
                         account.accountName+
@@ -57,6 +64,13 @@ define([
                 }else{ unique = true; }
             }
             return unique;
+        }
+        function containsIllegalChar(input) {
+            var bannedChars = ['/','\\','@','#'];
+            for (var i = 0; i < bannedChars.length; i++) {
+                if(~input.indexOf(bannedChars[i]) < 0) return true;
+            }
+            return false;
         }
     }
 );

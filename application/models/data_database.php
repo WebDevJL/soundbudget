@@ -1,4 +1,7 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 /**
  * SoundBudget
  *
@@ -21,20 +24,20 @@
  * @category            Model
  * @author		Jeremie Litzler
  */
+Class Data_database extends CI_Model {
 
-Class Data_database extends CI_Model
-{
     private $_data_to_return = array();
+
     /**
      * Constructor
      * 
      * @access public
      */
-    function __construct()
-    {
+    function __construct() {
         // Call the Model constructor
-        parent::__construct();       
+        parent::__construct();
     }
+
     /**
      * Select_database
      * 
@@ -44,22 +47,22 @@ Class Data_database extends CI_Model
      * @param	array
      * @return	bool
      */
-    public function Select_database($storedProcedure){
-        error_log($storedProcedure);
-        $dbset = $this->db->query($storedProcedure);
-        if ($this->db->affected_rows() > 0){
+    public function Select_database($sql) {
+        //error_log($sql);
+        $dbset = $this->db->query($sql);
+        if ($this->db->affected_rows() > 0) {
             $this->_data_to_return["result"] = TRUE;
-        }else{
+        } else {
             $this->_data_to_return["result"] = FALSE;
         }
-        if($dbset -> num_rows() > 0)
-        {
+        if ($dbset->num_rows() > 0) {
             $this->_data_to_return["items"] = $dbset->result();
-        }
+        } 
         $dbset->next_result();
         $dbset->free_result();
         return $this->_data_to_return;
     }
+
     /**
      * Update_database
      * 
@@ -69,17 +72,22 @@ Class Data_database extends CI_Model
      * @param	array
      * @return	bool
      */
-    public function Update_database($storedProcedure){
-        $dbset = $this->db->query($storedProcedure);
-        if ($this->db->affected_rows() > 0){
+    public function Update_database($sql) {
+        //error_log($sql);
+        $dbset = $this->db->query($sql);
+        if ($this->db->affected_rows() > 0) {
             $this->_data_to_return["result"] = TRUE;
-        }else{
+        } else {
             $this->_data_to_return["result"] = FALSE;
         }
-        $dbset->next_result();
-        $dbset->free_result();
+        //If $sql is a stored procedure, execute next 2 lines
+        if (substr($sql, 0, 4) == "CALL") {
+            $dbset->next_result();
+            $dbset->free_result();            
+        }
         return $this->_data_to_return;
     }
+
     /**
      * Insert_database
      * 
@@ -89,21 +97,30 @@ Class Data_database extends CI_Model
      * @param	array
      * @return	bool
      */
-    public function Insert_database($storedProcedure){
-        $dbset = $this->db->query($storedProcedure);
-        if ($this->db->affected_rows() > 0){
+    public function Insert_database($sql) {
+        //error_log($sql);
+        $dbset = $this->db->query($sql);
+        if ($this->db->affected_rows() > 0) {
             $this->_data_to_return["result"] = TRUE;
-        }else{
+        } else {
             $this->_data_to_return["result"] = FALSE;
         }
-        if($dbset -> num_rows() > 0)
-        {
-            $this->_data_to_return["items"] = $dbset->result();
+        //If $sql is a stored procedure, execute next 2 lines
+        if (substr($sql, 0, 4) == "CALL") {
+            if($dbset -> num_rows() > 0)
+            {
+            $res = $dbset->result();
+            $this->_data_to_return["items"] = $res[0]->Id;
+            }
+
+            $dbset->next_result();
+            $dbset->free_result();
+        } else {
+            $this->_data_to_return["items"] = $this->db->insert_id();
         }
-        $dbset->next_result();
-        $dbset->free_result();
         return $this->_data_to_return;
     }
+
     /**
      * Delete_database
      * 
@@ -113,12 +130,19 @@ Class Data_database extends CI_Model
      * @param	array
      * @return	array
      */
-    public function Delete_database($storedProcedure){
-        $dbset = $this->db->query($storedProcedure);
-        $this->_data_to_return["result"] = TRUE;
-        $dbset->next_result();
-        $dbset->free_result();
-        //$dbset->close();
+    public function Delete_database($sql) {
+        //error_log($sql);
+        $dbset = $this->db->query($sql);
+        if ($this->db->affected_rows() > 0) {
+            $this->_data_to_return["result"] = TRUE;
+        } else {
+            $this->_data_to_return["result"] = FALSE;
+        }
+        //If $sql is a stored procedure, execute next 2 lines
+        if (substr($sql, 0, 4) == "CALL") {
+            $dbset->next_result();
+            $dbset->free_result();            
+        }
         return $this->_data_to_return;
     }
 
