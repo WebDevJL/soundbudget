@@ -50,7 +50,8 @@ Class Event_configuration extends CI_Model
      * @return	array
      */
     public function Get_query_details_for_action($action){
-        $sql = "CALL USP_RetrieveEventDetails('$action');";
+        //$sql = "CALL USP_RetrieveEventDetails('$action');";
+        $sql = "SELECT `eventID`, `sourceType`, `source`, `paramID` FROM `tblAjaxEventConfigurations` WHERE `eventID` = '$action';";
         error_log($sql);
         $dbset = $this->db->query($sql);
         if ($dbset->num_rows() > 0){
@@ -61,9 +62,8 @@ Class Event_configuration extends CI_Model
                 $this->_event_source['source'] = $row->source;
                 $this->_event_source['paramID'] = $row->paramID;
             }
-            $dbset->next_result();
-            $dbset->free_result();
-            //$dbset->close();
+            //$dbset->next_result();
+            //$dbset->free_result();
             return $this->_event_source;
         }
     }
