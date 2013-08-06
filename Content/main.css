@@ -30,6 +30,7 @@ a#logout img{width: 20px;color: #FFF;}
   width: 95%;
   padding: 1%;
 }
+.accounts input{border: 1px solid #CCC;}
 .accounts .c1{width: 30%}
 .accounts .c2{width: 40%}
 .accounts .c3{width: 5%}

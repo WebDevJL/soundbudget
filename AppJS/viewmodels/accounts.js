@@ -62,24 +62,21 @@ function (datacx, logger, checker, account) {
             }
         },
         editRow = function() {
-            var that = this, afterUpdate = {};
+            var that = this, afterUpdate = {};
             if (that.editable()) afterUpdate = account.SetToCompare(that);
             if (!that.editable()) accountBeforeUpdate = account.SetToCompare(that);
-            this.editable(!that.editable());
+                this.editable(!that.editable());
             
-            if(
-                    !this.editable() 
-                    && account.NeedToUpdate(afterUpdate, accountBeforeUpdate)
-                    && checker.isValid(that,accounts,'account')
-            ) {
+            if(!this.editable() && account.NeedToUpdate(afterUpdate, accountBeforeUpdate)) {
+                console.log("need to update");
                 var data = account.SetAccountForUpdate(that);
                 datacx.submit('u_1', data).then(function(response) {
                     if(response.result === true) {
-                        logger.success("Account '" + data.string1 + "' has been updated.",null,null,true);
+                        logger.success("Account '" + that.accountName + "' has been updated.",null,null,true);
                     }
                 });
                 if (that.editable) accountBeforeUpdate = {};
-            }
+            } else { console.log("no need to update"); }
         },
         deleteRow = function() {
             var that = this;
