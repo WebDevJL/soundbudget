@@ -8,6 +8,7 @@
         <section data-bind="with: tableHeaders">
             <ul class="rowHeader">
                     <li class="icon"></li>
+                    <li class="icon"></li>
                     <li class="c3" data-bind="html: active"></li>
                     <li class="c1" data-bind="html: currencyName"></li>
                     <li class="c2" data-bind="html: accountName"></li>
@@ -17,6 +18,7 @@
         </section>
         <section data-bind="with: insertForm">
             <ul class="rowData">
+                <li class="icon"></li>
                 <li class="icon" data-bind="click: $parent.addRow">
                     <img src="Content/assets/add.png" width="20" alt="add">
                 </li>
@@ -46,8 +48,11 @@
         </section>
         <section data-bind="foreach: accounts">
                 <ul class="rowData">
-                    <li class="icon" data-bind="visible: !editable(),click: $parent.deleteRow">
+                    <li class="icon" data-bind="click: $parent.deleteRow">
                         <img src="Content/assets/delete.png" width="20" alt="delete">
+                    </li>
+                    <li class="icon" data-bind="visible: !editable(), click: $parent.editRow">
+                        <img src="Content/assets/edit.png" width="20" alt="edit">
                     </li>
                     <li class="icon" data-bind="visible: editable(), click: $parent.editRow">
                         <img src="Content/assets/update.png" width="20" alt="update">

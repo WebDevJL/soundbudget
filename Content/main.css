@@ -26,8 +26,8 @@ a#logout img{width: 20px;color: #FFF;}
     background-color: #dfeffc;
 }
 /* account table specific styling */
-.accounts input, .accounts select {
-  width: 95%;
+.accounts input, .accounts select, .accounts span {
+  width: 90%;
   padding: 1%;
 }
 .accounts input{border: 1px solid #CCC;}
