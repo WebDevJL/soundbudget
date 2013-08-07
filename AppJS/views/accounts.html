@@ -62,12 +62,12 @@
                     </li>
                     <li class="c1" data-bind="text: currencyName, attr: {title: currencyName}"></li>
                     <li class="c2" data-bind="attr: {title: accountName}">
-                        <span data-bind="text: accountName, visible: !editable(), click: $root.editRow"></span>
+                        <span data-bind="text: accountName, visible: !editable()"></span>
                         <input type="text" data-bind="visible: editable(), value: accountName">
                     </li>
                     <li class="c4">
                         <span data-bind="html: currencySymbol"></span>
-                        <span data-bind="text: startingBalance, visible: !editable(), click: $root.editRow"></span>
+                        <span data-bind="text: startingBalance, visible: !editable()"></span>
                         <input type="text" data-bind="visible: editable(), value: startingBalance">
                     </li>
                     <li class="c5">
