@@ -46,7 +46,7 @@
                 <li class="c5">N/A</li>
             </ul>
         </section>
-        <section data-bind="foreach: accounts">
+        <section class="rows" data-bind="foreach: accounts">
                 <ul class="rowData">
                     <li class="icon" data-bind="click: $parent.deleteRow">
                         <img src="Content/assets/delete.png" width="20" alt="delete">
@@ -60,7 +60,9 @@
                     <li class="c3">
                         <input type="checkbox" data-bind="checked: active, enable: editable()">
                     </li>
-                    <li class="c1" data-bind="text: currencyName, attr: {title: currencyName}"></li>
+                    <li class="c1">
+                        <span data-bind="text: currencyName, attr: {title: currencyName}"></span>
+                    </li>
                     <li class="c2" data-bind="attr: {title: accountName}">
                         <span data-bind="text: accountName, visible: !editable()"></span>
                         <input type="text" data-bind="visible: editable(), value: accountName">
