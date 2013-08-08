@@ -85,7 +85,7 @@ function (datacx, logger, checker, account) {
                 if(response.result === true) {
                     logger.success("Account '" + that.accountName + "' has been deleted.",null,null,true);
                     accounts.remove(that);
-                }
+                } else { checker.processError(response); }
             }); 
         };
     

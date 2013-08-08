@@ -11,6 +11,14 @@
             <!--Login existing user-->
             <div id="l-form">
                <h1>Login to access your SoundBudget</h1>
+               <?php
+                    if (isset($_GET["sess_expired"]) && $_GET["sess_expired"] == TRUE) {
+                        $msg_sess_expired = '<span class="form_error">';
+                        $msg_sess_expired .= 'Your session has expired. Please login again';
+                        $msg_sess_expired .= '</span>';
+                        echo $msg_sess_expired;
+                    }
+               ?>
                <?php echo validation_errors(); ?>
                <?php echo form_open('auth_verifylogin'); ?>
                <div class="userName">

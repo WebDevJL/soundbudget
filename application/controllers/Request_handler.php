@@ -33,7 +33,8 @@ class Request_handler extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Handler','handler');
-        $this->_Init();
+        $this->load->model('User','user');
+        $this->user->Load_session_data();
     }
     /**
      * Process_request2
@@ -45,11 +46,17 @@ class Request_handler extends CI_Controller {
      * @return	json object
      */
     function Process_request2($action){
-        $this->_request['request_action'] = $action;
-        $this->_request['request_data'] = $this->input->get(NULL, TRUE);//xss safe! Thanks Codeigniter!
-        $this->_Route_request_to_handler($this->_request);
+        if ($this->user->is_logged) {
+            $this->_Init();
+            $this->_request['request_action'] = $action;
+            $this->_request['request_data'] = $this->input->get(NULL, TRUE);//xss safe! Thanks Codeigniter!
+            $this->_Route_request_to_handler($this->_request);
+        } else {
+            $this->_Set_object_for_session_expired();
+            //redirect('?sess_expired=true', 'view', '302');
+        }
         header('Content-type: application/json');
-        echo json_encode($this->_response_data);
+        echo json_encode($this->_response_data);            
     }
     /**
      * _Route_request_to_handler
@@ -82,5 +89,18 @@ class Request_handler extends CI_Controller {
         $this->_response_data["message"] = "Something went wrong.";
         $this->_response_data["errorID"] = "-1";
         $this->_response_data["data"] = array();
+    }
+    /**
+     * _Set_object_for_session_expired
+     * 
+     * Set default response object when session has expired.
+     * 
+     * @access  private
+     * @param   void
+     * @return  void
+     */
+    private function _Set_object_for_session_expired(){
+        $this->_response_data["result"] = FALSE;
+        $this->_response_data["redirectUrl"] = "./?sess_expired=true";
     }
 }

@@ -4,7 +4,8 @@ define([
 ],
     function (logger, utils) {
         var check = {
-            isValid: isValid
+            isValid: isValid,
+            processError: processError
         };
 
         return check;
@@ -71,6 +72,10 @@ define([
                 if(~input.indexOf(bannedChars[i]) < 0) return true;
             }
             return false;
+        }
+        function processError(response) {
+            if (response.redirectUrl !== undefined)
+                window.location.replace(response.redirectUrl);
         }
     }
 );
