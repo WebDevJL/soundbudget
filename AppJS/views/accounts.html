@@ -2,10 +2,8 @@
     <span data-bind="html: mainHeader"></span>
     <span data-bind="html: seperator"></span>
     <span data-bind="html: subHeader1"></span>
-    <span data-bind="html: seperator"></span>
-    <span data-bind="html: subHeader2"></span>
-    <div class="accounts table">
-        <section data-bind="with: tableHeaders">
+    <div class="accounts table" data-bind="visible: $root.accounts().length > 0">
+        <section class="tableHeaders" data-bind="with: tableHeaders">
             <ul class="rowHeader">
                     <li class="icon"></li>
                     <li class="icon"></li>
@@ -16,7 +14,7 @@
                     <li class="c4" data-bind="html: accountBalance"></li>
             </ul>
         </section>
-        <section data-bind="with: insertForm">
+        <section class="inserForm" data-bind="with: insertForm">
             <ul class="rowData">
                 <li class="icon"></li>
                 <li class="icon" data-bind="click: $parent.addRow">
@@ -46,7 +44,7 @@
                 <li class="c5">N/A</li>
             </ul>
         </section>
-        <section class="rows" data-bind="foreach: accounts">
+        <section class="tableData" data-bind="foreach: accounts">
                 <ul class="rowData">
                     <li class="icon" data-bind="click: $parent.deleteRow">
                         <img src="Content/assets/delete.png" width="20" alt="delete">
