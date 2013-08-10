@@ -33,7 +33,7 @@
                </form>
             </div>
             <div id="l-link">
-                <p>Existing user? <a href="/SoundBudget">This way</a>, please.</p>
+                <p>Existing user? <a href="./">This way</a>, please.</p>
             </div>
             <?php echo ( ! function_exists('mcrypt_encrypt')) ? 'Nope' : 'Yup'; ?>
          </div>
