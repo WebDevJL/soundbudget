@@ -18,6 +18,7 @@ a#logout img{width: 20px;color: #FFF;}
 }
 .rowData, .rowHeader{
     display: -webkit-box;
+    display: -moz-box;
     padding-top: 0.3em;
     border-bottom: 1px solid #ddd;
 }
