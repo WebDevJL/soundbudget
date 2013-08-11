@@ -31,10 +31,16 @@ function (datacx, logger, checker, account) {
 
             var that = this;
             datacx.getJson('s_2').then(function(response) {
-                that.currencies(response.items);
+                if(response.result) {
+                    that.currencies(response.items);
+                }
             });
             return datacx.getJson('s_1').then(function(response) {
-                that.accounts(account.SetObservables(response.items));
+                if(response.result) {
+                    that.accounts(account.SetObservables(response.items));                    
+                } else {
+                    logger.info("You're not able to add accounts at the moment. Please come back later.",null,null,true);
+                }
             });
         },/*,
         select: function(item) {

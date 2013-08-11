@@ -7,19 +7,6 @@
 */
 /* Generic custom CSS - Start */
 body{font-family: Book Antiqua, Arial, sans-serif;}
-header{}
-img#logo{margin-top: 2px;}
-a#logout{
-    padding: 0 0 4px 2px;float: right;
-    width:20px;height: 20px;
-    background-color: #ff735d;color: #FFF;
-    border-left: 1px solid #CCC;
-    border-bottom: 1px solid #CCC;
-    -webkit-border-bottom-left-radius: 4px;
-    -moz-border-radius-bottomleft: 4px;
-    
-}
-a#logout img{width: 20px;color: #FFF;}
 /* Generic custom CSS - End */
 /* Login and Create Account views - Start of custom styles */
 /* Smartphones (portrait and landscape) ----------- */
