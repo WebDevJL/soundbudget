@@ -109,7 +109,8 @@ Class User extends CI_Model
         //$this->load->library('encrypt');// Load encryption class
         //encrypt password with AES256
         $password_encrypted = $this->encrypt->encode($params[password]);
-        $sql = "CALL USP_InsertUser($params[uTypeID],'$params[userName]','$params[userEmail]','$password_encrypted')";
+        //$sql = "CALL USP_InsertUser($params[uTypeID],'$params[userName]','$params[userEmail]','$password_encrypted')";
+        $sql = "INSERT INTO `tblUsers` (`uTypeID`,`userName`,`userEmail`,`password`) VALUES ('$params[uTypeID]','$params[userName]','$params[userEmail]','$password_encrypted');";
         $result = $this->db->query($sql);
         return $result;
     }
