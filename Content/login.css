@@ -22,8 +22,37 @@ a#logout{
 a#logout img{width: 20px;color: #FFF;}
 /* Generic custom CSS - End */
 /* Login and Create Account views - Start of custom styles */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 0px) 
+and (max-device-width : 481px) {
+    div#l-c{
+        width: 100%;
+    }
+}
+@media only screen 
+and (min-device-width : 481px) 
+and (max-device-width : 801px) {
+    div#l-c{
+        width: 80%;
+    }
+}
+@media only screen 
+and (min-device-width : 801px) 
+and (max-device-width : 1024px) {
+    div#l-c{
+        width: 80%;
+    }
+}
+@media only screen 
+and (min-device-width : 1024px) {
+    div#l-c{
+        width: 320px;
+    }
+}
+
+
 div#l-c{
-    width: 320px;
     height:auto;
     min-height:30px;
     text-align: center;
