@@ -13,7 +13,8 @@ define([
             return http.get('rq/Process_request2/'+action, {});
         }
         function submit(action,data) {
-            return http.get('rq/Process_request2/'+action, data);
+            
+            return http.post('rq/Process_request2/'+action, data);
         }
     }
 );

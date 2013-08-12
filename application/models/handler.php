@@ -70,7 +70,7 @@ Class Handler extends CI_Model
      * @return	bool
      */
     public function Process_request($request){
-        if($this->user->is_logged )
+        if($this->user->is_logged)
         {
             $this->Init($request);
             switch ($this->_request['request_params'][0]) {
@@ -148,35 +148,36 @@ Class Handler extends CI_Model
                 $stored_prepared = sprintf(
                         $stored_prepared,
                         $this->user->user_session_data['userID'],
-                        $this->_request['request_data']['id1']
+                        $this->_request['request_data']->id1
                         );
                 break;
             case '3'://params: userID, any integer, any string, any boolean
                 $stored_prepared = sprintf(
                         $stored_prepared,
                         $this->user->user_session_data['userID'],
-                        $this->_request['request_data']['id1'],
-                        $this->_request['request_data']['string1'],
-                        $this->_request['request_data']['bool1']
+                        $this->_request['request_data']->id1,
+                        $this->_request['request_data']->string1,
+                        $this->_request['request_data']->bool1
                         );
                 break;
             case '4'://params: userID, any integer, any string, any float, any boolean
+                //error_log(print_r($this->_request['request_data']));
                 $stored_prepared = sprintf(
                         $stored_prepared,
                         $this->user->user_session_data['userID'],
-                        $this->_request['request_data']['id1'],
-                        $this->_request['request_data']['string1'],
-                        $this->_request['request_data']['float1'],
-                        $this->_request['request_data']['bool1']
+                        $this->_request['request_data']->id1,
+                        $this->_request['request_data']->string1,
+                        $this->_request['request_data']->float1,
+                        $this->_request['request_data']->bool1
                         );
                 break;
             case '5'://params: any string, any float, any boolean, any integer, userID
                 $stored_prepared = sprintf(
                         $stored_prepared,
-                        $this->_request['request_data']['string1'],
-                        $this->_request['request_data']['float1'],
-                        $this->_request['request_data']['bool1'],
-                        $this->_request['request_data']['id1'],
+                        $this->_request['request_data']->string1,
+                        $this->_request['request_data']->float1,
+                        $this->_request['request_data']->bool1,
+                        $this->_request['request_data']->id1,
                         $this->user->user_session_data['userID']
                         );
                 break;

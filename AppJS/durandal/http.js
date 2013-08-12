@@ -26,7 +26,7 @@
         post:function(url, data) {
             return $.ajax({
                 url: url,
-                data: ko.toJSON(data),
+                data: ko.toJSON(data),//data,
                 type: 'POST',
                 contentType: 'application/json',
                 dataType: 'json'
