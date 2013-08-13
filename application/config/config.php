@@ -245,7 +245,7 @@ $config['encryption_key'] = 'cd307d03dd329a42cec6a928405b0d526ea7a030';
 |
 */
 $config['sess_cookie_name']		= 'sbID';
-$config['sess_expiration']		= 60;
+$config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= FALSE;
