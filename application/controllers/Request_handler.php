@@ -49,8 +49,7 @@ class Request_handler extends CI_Controller {
         if ($this->user->is_logged) {
             $this->_Init();
             $this->_request['request_action'] = $action;
-            $this->_request['request_data'] = FALSE;
-            $this->_Parse_post_data(file_get_contents('php://input'));
+            $this->_request['request_data'] = $this->input->post_ajax(NULL, TRUE);
             $this->_Route_request_to_handler($this->_request);
         } else {
             $this->_Set_object_for_session_expired();
@@ -103,29 +102,4 @@ class Request_handler extends CI_Controller {
         $this->_response_data["result"] = FALSE;
         $this->_response_data["redirectUrl"] = "./?sess_expired=true";
     }
-    /**
-     * _Parse_post_data
-     * 
-     * Create a associative array from the post data received in request.
-     * 
-     * @access  private
-     * @param   string
-     * @return  void
-     */
-    private function _Parse_post_data($post_data) {
-        if ($post_data != "") {
-//            $subStrings = explode("&", $post_data);
-//            $processed_post_data = array();
-//            foreach ($subStrings as $post_parameter) {
-//                $expl_paramater = explode("=", $post_parameter);
-//                $processed_post_data[$expl_paramater[0]] = 
-//                        rawurldecode(
-//                                str_replace("+", " ", $expl_paramater[1])
-//                        );
-//            }
-            $this->_request['request_data'] = json_decode($post_data); //$processed_post_data;
-        } else {
-            $this->_request['request_data'] = FALSE;
-        }
-     }
 }
