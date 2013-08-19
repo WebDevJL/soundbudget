@@ -2,9 +2,10 @@ define([
     'services/dataservice', 
     'services/logger',
     'services/errorHandler',
-    'models/AccountModel'
+    'models/AccountModel',
+    'models/CurrencyModel'
 ], 
-function (datacx, logger, checker, account) {
+function (datacx, logger, checker, account, currency) {
     var mainHeader = 'Preferences',
         subHeader1 = 'Accounts',
         subHeader2 = '',
@@ -28,27 +29,10 @@ function (datacx, logger, checker, account) {
             if (accounts().length > 0) {
                 return;
             }
-
             var that = this;
-            datacx.getJson('s_2').then(function(response) {
-                if(response.result) {
-                    that.currencies(response.items);
-                }
-            });
-            return datacx.getJson('s_1').then(function(response) {
-                if(response.result) {
-                    that.accounts(account.SetObservables(response.items));                    
-                } else {
-                    logger.info("You're not able to add accounts at the moment. Please come back later.",null,null,true);
-                }
-            });
-        },/*,
-        select: function(item) {
-            //the app model allows easy display of modal dialogs by passing a view model
-            //views are usually located by convention, but you an specify it as well with viewUrl
-            item.viewUrl = 'views/detail';
-            app.showModal(item);
-        }*/
+            currency.GetAll(that.currencies);
+            return account.GetAll(that.accounts);
+        },
         addRow = function() {
             var accountToAdd = account.InitToAdd(
                     {
@@ -57,43 +41,24 @@ function (datacx, logger, checker, account) {
                         activeFlag: newAccountActiveFlag()
                     }
                 );
-            if(checker.isValid(accountToAdd,accounts,'account')){
-                var dataToServer = account.SetAccountForInsert(accountToAdd);
-                datacx.submit('i_1', dataToServer).then(function(response) {
-                    if(response.result === true) {
-                        accountToAdd.accountId = response.items;
-                        accounts.push(accountToAdd);
-                        logger.success("The account has been added",null,null,true);
-                    } else { checker.processError(response); }
-                });
-            }
+            account.Insert(accountToAdd,accounts);
         },
         editRow = function() {
-            var that = this, afterUpdate = {};
-            if (that.editable()) afterUpdate = account.SetToCompare(that);
-            if (!that.editable()) accountBeforeUpdate = account.SetToCompare(that);
+            var that = this, afterUpdate = {}, ready = false;
+            if (!that.editable()) {
+                accountBeforeUpdate = account.SetToCompare(that);
                 this.editable(!that.editable());
-            
-            if(!this.editable() && account.NeedToUpdate(afterUpdate, accountBeforeUpdate)) {
-                console.log("need to update");
-                var data = account.SetAccountForUpdate(that);
-                datacx.submit('u_1', data).then(function(response) {
-                    if(response.result === true) {
-                        logger.success("Account '" + that.accountName + "' has been updated.",null,null,true);
-                    } else { checker.processError(response); }
-                });
+            } else {
+                afterUpdate = account.SetToCompare(that);
+                ready = true;
+            }
+            if(ready && account.NeedToUpdate(afterUpdate, accountBeforeUpdate)) {
+                account.Update(afterUpdate,that);
                 if (that.editable) accountBeforeUpdate = {};
-            } else { console.log("no need to update"); }
+            }
         },
         deleteRow = function() {
-            var that = this;
-            var data = account.SetAccountForDelete(that);
-            datacx.submit('d_1', data).then(function(response) {
-                if(response.result === true) {
-                    logger.success("Account '" + that.accountName + "' has been deleted.",null,null,true);
-                    accounts.remove(that);
-                } else { checker.processError(response); }
-            }); 
+            account.Delete(this,accounts);
         };
     
     newAccountActiveFlag.subscribe(function(){});

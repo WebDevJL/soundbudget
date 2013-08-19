@@ -9,7 +9,10 @@ define([
             InitAccount: InitAccount,
             NeedToUpdate: NeedToUpdate,
             SetToCompare: SetToCompare,
-            GetList: GetList,
+            GetAll: GetAll,
+            Insert: Insert,
+            Update: Update,
+            Delete: Delete,
             SetAccountForInsert: SetAccountForInsert,
             SetAccountForUpdate: SetAccountForUpdate,
             SetAccountForDelete: SetAccountForDelete,
@@ -19,8 +22,45 @@ define([
         return AccountModel;
         
         var accountsList = ko.observableArray([]);
-        function GetList() {
-            
+        function GetAll(accountsObservable) {
+            return datacx.getJson('s_1').then(function(response) {
+                if(response.result) {
+                    accountsObservable(SetObservables(response.items));                    
+                } else {
+                    logger.info("You're not able to add accounts at the moment. Please come back later.",null,null,true);
+                }
+            });
+        }
+        function Update(accountToUpdate,accountObservable) {
+            var data = SetAccountForUpdate(accountToUpdate);
+            datacx.submit('u_1', data).then(function(response) {
+                if(response.result === true) {
+                    logger.success("Account '" + accountToUpdate.accountName + "' has been updated.",null,null,true);
+                    accountObservable.editable(false);
+                } else { checker.processError(response); }
+                return true;
+            });
+        }
+        function Insert(accountToAdd,accounts) {
+            if(checker.isValid(accountToAdd,accounts,'account')){
+                var dataToServer = SetAccountForInsert(accountToAdd);
+                datacx.submit('i_1', dataToServer).then(function(response) {
+                    if(response.result === true) {
+                        accountToAdd.accountId = response.items;
+                        accounts.push(accountToAdd);
+                        logger.success("The account has been added",null,null,true);
+                    } else { checker.processError(response); }
+                });
+            }
+        }
+        function Delete(account,accounts) {
+            var data = SetAccountForDelete(account);
+            datacx.submit('d_1', data).then(function(response) {
+                if(response.result === true) {
+                    logger.success("Account '" + account.accountName + "' has been deleted.",null,null,true);
+                    accounts.remove(account);
+                } else { checker.processError(response); }
+            });
         }
         function InitToAdd(data) {
             var account = InitAccount();
@@ -32,6 +72,7 @@ define([
         }
         function SetToCompare(account) {
             return {
+                accountId: account.accountId,
                 accountName: account.accountName,
                 startingBalance: account.startingBalance,
                 active: (account.active) ? '1' : '0'

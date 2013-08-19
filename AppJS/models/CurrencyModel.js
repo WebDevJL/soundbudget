@@ -9,7 +9,7 @@ define([
             InitAccount: InitAccount,
             NeedToUpdate: NeedToUpdate,
             SetToCompare: SetToCompare,
-            GetList: GetList,
+            GetAll: GetAll,
             SetAccountForInsert: SetAccountForInsert,
             SetAccountForUpdate: SetAccountForUpdate,
             SetAccountForDelete: SetAccountForDelete,
@@ -19,8 +19,14 @@ define([
         return AccountModel;
         
         var accountsList = ko.observableArray([]);
-        function GetList() {
-            
+        function GetAll(currenciesObservable) {
+            return datacx.getJson('s_2').then(function(response) {
+                if(response.result) {
+                    currenciesObservable(SetObservables(response.items));                    
+                } else {
+                    logger.info("You're not able to add currencies at the moment. Please come back later.",null,null,true);
+                }
+            });
         }
         function InitToAdd(data) {
             var account = InitAccount();
