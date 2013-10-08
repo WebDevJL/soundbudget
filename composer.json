@@ -1,6 +1,1 @@
-{
-    "require": {
-        "components/jquery": "*",
-        "components/jqueryui": "*"                
-    }
-}
+{"require":{"slim/slim":"2.*"}}

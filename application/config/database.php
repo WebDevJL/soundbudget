@@ -45,7 +45,7 @@
 | the active record class
 */
 
-$active_group = 'default';
+$active_group = 'frbit';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
